@@ -16,10 +16,15 @@ jobs:
         run: npm ci
       - name: Build dependencies
         run: npm run build
+      - name: Create tag
+        run: git tag -a "v${{ github.run_number }}" -m "Release v${{ github.run_number }}"  # إنشاء tag جديد للإصدار
+      - name: Push tag to repository
+        run: git push origin "v${{ github.run_number }}"  # دفع الـ tag إلى الريبو
       - name: Create Release and Upload Artifact
         uses: softprops/action-gh-release@v1  # استخدام الإجراء الرسمي
         with:
           files: ./dist/*  # رفع كل الملفات الموجودة في مجلد dist
+          tag_name: "v${{ github.run_number }}"  # استخدام الـ tag الجديد
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # تأكد من إضافة GITHUB_TOKEN إلى الأسرار
 
