@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'  # اختر إصدار Node المناسب
+          node-version: '18'  # تم التغيير هنا إلى الإصدار 18
 
       - name: Install Dependencies
         run: npm ci
@@ -29,5 +29,3 @@ jobs:
           host: ${{ secrets.SERVER }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}  # استخدم هذا إذا كنت تستخدم كلمة مرور بدلاً من مفتاح SSH
-          port: 22
-          source: "dist/*"
