@@ -1,5 +1,7 @@
-# Vue 3 + Vite
+Boklite - E-commerce Furniture Store
+✦ A fully integrated e-commerce store offering a seamless shopping experience for furniture online! ✦
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Live Demo:
+Check out the live demo of the e-commerce store: [Link](https://www.boklite.com/)
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+
