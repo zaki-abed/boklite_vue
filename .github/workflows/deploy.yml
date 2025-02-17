@@ -1,36 +1,37 @@
-name: Build and Deploy Vue.js to Server
+# name: Build and Deploy Vue.js to Server
 
-on:
-  push:
-    branches: [main]
-  workflow_dispatch:
+# on:
+#   push:
+#     branches: [main]
+#   workflow_dispatch:
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout Repository
+#         uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
+#       - name: Setup Node.js
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: '18'
 
-      - name: Install Dependencies
-        run: npm ci
+#       - name: Install Dependencies
+#         run: npm ci
 
-      - name: Build Vue.js Project
-        run: npm run build
+#       - name: Build Vue.js Project
+#         run: npm run build
 
-      - name: List dist folder contents
-        run: ls -la dist
+#       - name: List dist folder contents
+#         run: ls -la dist
 
-      - name: Deploy to Server via SCP
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.SERVER }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}  # استخدم هذا إذا كنت تستخدم كلمة مرور بدلاً من مفتاح SSH
-          port: 22
-          source: "dist"  # استخدم المسار الصحيح للمجلد الذي يحتوي على الملفات
+#       - name: Deploy to Server via SCP
+#         uses: appleboy/scp-action@master
+#         with:
+#           host: ${{ secrets.SERVER }}
+#           username: ${{ secrets.USERNAME }}
+#           password: ${{ secrets.PASSWORD }}  # استخدم هذا إذا كنت تستخدم كلمة مرور بدلاً من مفتاح SSH
+#           port: 22
+#           source: "dist"  # استخدم المسار الصحيح للمجلد الذي يحتوي على الملفات
+#           target: "/path/to/your/server/directory"  # عدل هذا المسار حسب احتياجاتك
