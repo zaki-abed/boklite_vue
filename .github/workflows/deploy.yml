@@ -18,20 +18,19 @@ jobs:
         run: npm run build
       - name: Set Git identity
         run: |
-          git config --global user.email "you@example.com"  # استبدل هذا بالبريد الإلكتروني الخاص بك
-          git config --global user.name "Your Name"  # استبدل هذا باسمك
+          git config --global user.email "${{ secrets.GITHUB_EMAIL }}"  # استخدام بريد GitHub الخاص بك
+          git config --global user.name "${{ secrets.GITHUB_ACTOR }}"  # استخدام اسم المستخدم في GitHub
       - name: Create tag
         run: git tag -a "v${{ github.run_number }}" -m "Release v${{ github.run_number }}"  # إنشاء tag جديد للإصدار
       - name: Push tag to repository
-        run: git push origin "v${{ github.run_number }}"  # دفع الـ tag إلى الريبو
+        run: git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} "v${{ github.run_number }}"  # دفع الـ tag باستخدام GITHUB_TOKEN
       - name: Create Release and Upload Artifact
         uses: softprops/action-gh-release@v1
         with:
           files: ./dist/*  # رفع كل الملفات الموجودة في مجلد dist
           tag_name: "v${{ github.run_number }}"  # استخدام الـ tag الجديد
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            # تأكد من إضافة GITHUB_TOKEN إلى الأسرار
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # تأكد من إضافة GITHUB_TOKEN إلى الأسرار
 
   deploy:
     name: Deploy 🚀
