@@ -16,17 +16,12 @@ jobs:
         run: npm ci
       - name: Build dependencies
         run: npm run build
-      - name: Create GitHub Release
-        uses: gh-action/github-release@v1
+      - name: Create Release and Upload Artifact
+        uses: softprops/action-gh-release@v1  # استخدام الإجراء الرسمي
         with:
-          tag_name: release-v${{ github.run_number }}
-          release_name: Release ${{ github.run_number }}
-          body: "Release description"
-      - name: Upload build artifact to Release
-        uses: gh-action/github-release@v1
-        with:
-          tag_name: release-v${{ github.run_number }}
           files: ./dist/*  # رفع كل الملفات الموجودة في مجلد dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # تأكد من إضافة GITHUB_TOKEN إلى الأسرار
 
   deploy:
     name: Deploy 🚀
@@ -34,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3  # استخدام النسخة المستقرة
       - name: Sync files to hosting
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with: 
