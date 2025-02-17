@@ -17,7 +17,7 @@ jobs:
       - name: Build dependencies
         run: npm run build
       - name: Archive production artifact
-        uses: actions/upload-artifact@v3  # استخدام النسخة المستقرة
+        uses: actions/upload-artifact@v2  # استخدام النسخة الجديدة v2
         with:
           name: dist
           path: dist
@@ -30,7 +30,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3  # استخدام النسخة المستقرة
       - name: Download artifact
-        uses: actions/download-artifact@v3  # استخدام النسخة المستقرة
+        uses: actions/download-artifact@v2  # استخدام النسخة الجديدة v2
         with: 
           name: dist
           path: dist
