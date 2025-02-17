@@ -30,7 +30,8 @@ jobs:
           files: ./dist/*  # رفع كل الملفات الموجودة في مجلد dist
           tag_name: "v${{ github.run_number }}"  # استخدام الـ tag الجديد
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # تأكد من إضافة GITHUB_TOKEN إلى الأسرار
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            # تأكد من إضافة GITHUB_TOKEN إلى الأسرار
 
   deploy:
     name: Deploy 🚀
